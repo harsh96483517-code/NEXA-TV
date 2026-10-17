@@ -1,0 +1,31 @@
+# Gradle / build output
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Local machine configuration (never commit)
+local.properties
+*.jks
+*.keystore
+keystore.properties
+signing.properties
+google-services.json
+
+# Generated / packaged output
+*.apk
+*.aab
+*.ap_
+*.dex
+output-metadata.json
+
+# OS junk
+.DS_Store
+Thumbs.db

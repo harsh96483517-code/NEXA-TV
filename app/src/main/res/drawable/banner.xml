@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 320x180 TV banner: original artwork (gradient + play mark). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+    <path android:pathData="M0,0h320v180h-320z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="320"
+                android:endY="180"
+                android:type="linear">
+                <item android:color="#FF0B1330" android:offset="0.0" />
+                <item android:color="#FF1B2A6B" android:offset="0.55" />
+                <item android:color="#FF4B2A8F" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M0,150 L60,118 L110,140 L170,100 L230,138 L280,112 L320,132 L320,180 L0,180z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="100"
+                android:endX="0"
+                android:endY="180"
+                android:type="linear">
+                <item android:color="#661BD6FF" android:offset="0.0" />
+                <item android:color="#000B1330" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M52,50 L52,106 L96,78z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="52"
+                android:startY="50"
+                android:endX="96"
+                android:endY="106"
+                android:type="linear">
+                <item android:color="#FF27D3FF" android:offset="0.0" />
+                <item android:color="#FF8B5CF6" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- "NEXA" wordmark drawn as simple strokes so no font is needed. -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M120,56 L120,100 M120,56 L144,100 M144,56 L144,100 M156,56 L180,56 M156,56 L156,100 M156,100 L180,100 M156,78 L176,78 M190,56 L218,100 M218,56 L190,100 M228,100 L240,56 L252,100 M232,88 L248,88"
+        android:strokeColor="#FFF4F7FF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M122,128 L250,128"
+        android:strokeColor="#9927D3FF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+</vector>
