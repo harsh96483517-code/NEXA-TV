@@ -61,24 +61,6 @@ fun EmptyState(
     )
 }
 
-/** Error state with a retry action that takes focus automatically. */
-@Composable
-fun ErrorState(
-    message: String,
-    onRetry: () -> Unit,
-    modifier: Modifier = Modifier,
-    title: String = "Something went wrong",
-) {
-    StateLayout(
-        modifier = modifier,
-        title = title,
-        message = message,
-        actionLabel = "Try again",
-        onAction = onRetry,
-        icon = R.drawable.ic_info,
-    )
-}
-
 @Composable
 private fun StateLayout(
     modifier: Modifier,

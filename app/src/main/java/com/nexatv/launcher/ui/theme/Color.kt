@@ -41,5 +41,5 @@ fun AccentTheme.colors(): NexaAccent = when (this) {
 
 val LocalNexaAccent = staticCompositionLocalOf { AccentTheme.AURORA.colors() }
 
-/** True when the user asked for fewer animations / no window blur (also good for weak hardware). */
+/** True when the user asked for fewer animations (also good for weak hardware). */
 val LocalReduceEffects = staticCompositionLocalOf { false }

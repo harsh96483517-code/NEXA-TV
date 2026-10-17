@@ -7,7 +7,6 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.nexatv.launcher.domain.model.AccentTheme
 import com.nexatv.launcher.domain.model.TimeFormat
@@ -28,7 +27,6 @@ private object Keys {
     val TIME_FORMAT = stringPreferencesKey("time_format")
     val SIDEBAR_COMPACT = booleanPreferencesKey("sidebar_compact")
     val REDUCE_EFFECTS = booleanPreferencesKey("reduce_effects")
-    val LIBRARY = stringSetPreferencesKey("library_ids")
 }
 
 /** Persists interface settings locally with Jetpack DataStore (Preferences). */
@@ -64,20 +62,12 @@ class DataStoreSettingsRepository(context: Context) : SettingsRepository {
         store.edit { it[Keys.REDUCE_EFFECTS] = reduce }
     }
 
-    override suspend fun toggleLibrary(contentId: String) {
-        store.edit { prefs ->
-            val current = prefs[Keys.LIBRARY].orEmpty()
-            prefs[Keys.LIBRARY] = if (contentId in current) current - contentId else current + contentId
-        }
-    }
-
     private fun Preferences.toSettings() = UserSettings(
         wallpaper = WallpaperChoice.parse(this[Keys.WALLPAPER]),
         accent = parseEnum(this[Keys.ACCENT], AccentTheme.AURORA),
         timeFormat = parseEnum(this[Keys.TIME_FORMAT], TimeFormat.SYSTEM),
         sidebarCompact = this[Keys.SIDEBAR_COMPACT] ?: false,
-        reduceEffects = this[Keys.REDUCE_EFFECTS] ?: false,
-        libraryIds = this[Keys.LIBRARY].orEmpty(),
+        reduceEffects = this[Keys.REDUCE_EFFECTS] ?: true,
     )
 
     private inline fun <reified T : Enum<T>> parseEnum(raw: String?, default: T): T =

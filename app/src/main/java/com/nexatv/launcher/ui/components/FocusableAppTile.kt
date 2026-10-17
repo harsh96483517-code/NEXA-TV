@@ -24,7 +24,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.nexatv.launcher.R
 import com.nexatv.launcher.domain.model.AppEntry
 import com.nexatv.launcher.platform.AppIcon
 import com.nexatv.launcher.platform.AppIconLoader
@@ -75,29 +74,6 @@ fun FocusableAppTile(
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
             )
-        }
-    }
-}
-
-/** The trailing "All Apps" tile of the apps row. */
-@Composable
-fun AllAppsTile(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    width: Dp = 104.dp,
-    height: Dp = 80.dp,
-) {
-    GlassCard(
-        modifier = modifier.size(width, height),
-        onClick = onClick,
-        cornerRadius = 14.dp,
-        focusedScale = 1.08f,
-        contentAlignment = Alignment.Center,
-    ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            NexaIcon(R.drawable.ic_apps, size = 32.dp)
-            Spacer(Modifier.height(6.dp))
-            Text(text = "All Apps", style = NexaType.Label.copy(fontSize = 12.sp))
         }
     }
 }

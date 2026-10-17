@@ -45,12 +45,7 @@ object SidebarDimens {
 
 /** Sidebar entries. [destination] is null for entries that open an overlay instead of a screen. */
 enum class SidebarItem(val label: String, @DrawableRes val icon: Int, val destination: Destination?) {
-    HOME("Home", R.drawable.ic_home, Destination.Home),
-    SEARCH("Search", R.drawable.ic_search, Destination.Search),
-    MOVIES("Movies", R.drawable.ic_movie, Destination.Movies),
-    SHOWS("TV Shows", R.drawable.ic_tv, Destination.TvShows),
-    APPS("Apps", R.drawable.ic_apps, Destination.Apps),
-    LIBRARY("Library", R.drawable.ic_library, Destination.Library),
+    HOME("Apps", R.drawable.ic_apps, Destination.Home),
     SETTINGS("Settings", R.drawable.ic_settings, null),
 }
 
@@ -166,8 +161,8 @@ private fun SidebarBrand(modifier: Modifier = Modifier) {
         }
         Column(Modifier.align(Alignment.BottomStart).padding(start = 6.dp, bottom = 8.dp)) {
             Text(
-                text = "NEXA TV",
-                style = NexaType.Label.copy(fontSize = 13.sp, letterSpacing = 2.sp, color = NexaPalette.TextPrimary),
+                text = "HARSH REALITY",
+                style = NexaType.Label.copy(fontSize = 12.sp, letterSpacing = 1.5.sp, color = NexaPalette.TextPrimary),
             )
             Text(
                 text = "Your World On Screen",

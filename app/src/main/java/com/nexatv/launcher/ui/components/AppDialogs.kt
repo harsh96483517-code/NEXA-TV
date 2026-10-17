@@ -20,7 +20,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.nexatv.launcher.R
 import com.nexatv.launcher.domain.model.AppEntry
-import com.nexatv.launcher.domain.model.ContentItem
 import com.nexatv.launcher.platform.AppIcon
 import com.nexatv.launcher.platform.AppIconLoader
 import com.nexatv.launcher.ui.theme.NexaPalette
@@ -71,47 +70,6 @@ fun AppOptionsDialog(
                     icon = R.drawable.ic_info,
                     onClick = onAppInfo,
                 )
-            }
-        }
-    }
-}
-
-/**
- * Shown instead of faking playback: the bundled titles are sample data and NEXA TV cannot start
- * or resume content without a real content source.
- */
-@Composable
-fun SampleNoticeDialog(
-    item: ContentItem,
-    onOpenApps: () -> Unit,
-    onDismiss: () -> Unit,
-) {
-    val first = remember { FocusRequester() }
-
-    GlassDialog(onDismiss = onDismiss) {
-        // Requested from inside the dialog so the focus request targets the dialog's own window.
-        RequestFocusOnEnter(first)
-        GlassPanel(Modifier.width(420.dp)) {
-            Column(Modifier.padding(26.dp)) {
-                Text(text = "Sample content", style = NexaType.Headline)
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    text = "“${item.title}” is placeholder content that ships with NEXA TV, and no " +
-                        "content source is configured yet, so there is nothing to play. Your " +
-                        "streaming apps are one step away on the Apps screen.",
-                    style = NexaType.Body,
-                )
-                Spacer(Modifier.height(18.dp))
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    GlassButton(
-                        text = "Open Apps",
-                        icon = R.drawable.ic_apps,
-                        primary = true,
-                        onClick = onOpenApps,
-                        modifier = Modifier.focusRequester(first),
-                    )
-                    GlassButton(text = "Close", onClick = onDismiss)
-                }
             }
         }
     }

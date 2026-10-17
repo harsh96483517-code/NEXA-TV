@@ -2,14 +2,9 @@ package com.nexatv.launcher.app
 
 import android.content.Context
 import com.nexatv.launcher.data.InstalledAppsRepository
-import com.nexatv.launcher.data.SampleContentRepository
 import com.nexatv.launcher.domain.model.AppEntry
 import com.nexatv.launcher.domain.repository.AppsRepository
-import com.nexatv.launcher.domain.repository.ContentRepository
 import com.nexatv.launcher.domain.repository.SettingsRepository
-import com.nexatv.launcher.domain.usecase.BuildAppRowUseCase
-import com.nexatv.launcher.domain.usecase.SearchAppsUseCase
-import com.nexatv.launcher.domain.usecase.SearchContentUseCase
 import com.nexatv.launcher.platform.AppIconLoader
 import com.nexatv.launcher.platform.AppLauncher
 import com.nexatv.launcher.platform.DefaultHomeController
@@ -40,13 +35,12 @@ class AppContainer(context: Context) {
 
     private val appContext: Context = context.applicationContext
 
-    /** NEXA TV's own package; it is excluded from app lists and searches. */
+    /** Harsh Reality's own package; it is excluded from the apps list. */
     val ownPackage: String = appContext.packageName
 
     val messages = MessageBus()
 
     val settingsRepository: SettingsRepository = DataStoreSettingsRepository(appContext)
-    val contentRepository: ContentRepository = SampleContentRepository()
     val appsRepository: AppsRepository =
         InstalledAppsRepository(InstalledAppsSource(appContext), PackageChanges(appContext))
 
@@ -56,10 +50,6 @@ class AppContainer(context: Context) {
     val networkMonitor = NetworkMonitor(appContext)
     val wallpaperSource = LocalWallpaperSource(appContext)
     val defaultHomeController = DefaultHomeController(appContext)
-
-    val buildAppRow = BuildAppRowUseCase(ownPackage = ownPackage)
-    val searchApps = SearchAppsUseCase()
-    val searchContent = SearchContentUseCase()
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
@@ -80,7 +70,7 @@ class AppContainer(context: Context) {
 
     private val mutableHomePressed = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
 
-    /** Emits when the system Home button is pressed while NEXA TV is already in front. */
+    /** Emits when the system Home button is pressed while Harsh Reality is already in front. */
     val homePressed: SharedFlow<Unit> = mutableHomePressed.asSharedFlow()
 
     fun refreshDefaultHome() {

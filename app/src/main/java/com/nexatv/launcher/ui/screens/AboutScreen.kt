@@ -31,7 +31,7 @@ import com.nexatv.launcher.ui.components.NexaLogo
 import com.nexatv.launcher.ui.theme.NexaPalette
 import com.nexatv.launcher.ui.theme.NexaType
 
-/** App info: version, the default-Home-app flow (with honest limits) and what is sample data. */
+/** App info: version and the default-Home-app flow (with honest limits). */
 @Composable
 fun AboutScreen(
     isDefaultHome: Boolean,
@@ -42,7 +42,7 @@ fun AboutScreen(
 ) {
     val initialFocus = remember { FocusRequester() }
     val leftToSidebar = remember(sidebarEntry) { Modifier.focusProperties { left = sidebarEntry } }
-    // Re-request when the state flips: the focused button is replaced once NEXA TV becomes the default.
+    // Re-request when the state flips: the focused button is replaced once Harsh Reality becomes the default.
     RequestFocusOnEnter(initialFocus, isDefaultHome)
 
     Column(
@@ -72,16 +72,16 @@ fun AboutScreen(
                     )
                     Spacer(Modifier.width(10.dp))
                     Text(
-                        text = if (isDefaultHome) "NEXA TV is your default Home app" else "NEXA TV is not your default Home app",
+                        text = if (isDefaultHome) "Harsh Reality is your default Home app" else "Harsh Reality is not your default Home app",
                         style = NexaType.Title,
                     )
                 }
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    text = "Android decides which app is Home, and only you can choose it. NEXA TV can " +
+                    text = "Android decides which app is Home, and only you can choose it. Harsh Reality can " +
                         "ask, and Android shows its own confirmation. On some TVs that dialog is missing, " +
                         "in which case use the Android Home settings button, or Settings > Apps > " +
-                        "Default apps. NEXA TV cannot replace the system launcher on its own.",
+                        "Default apps. Harsh Reality cannot replace the system launcher on its own.",
                     style = NexaType.Body,
                 )
                 Spacer(Modifier.height(16.dp))
@@ -108,14 +108,12 @@ fun AboutScreen(
 
         GlassPanel(Modifier.fillMaxWidth(0.9f)) {
             Column(Modifier.padding(20.dp)) {
-                Text(text = "What is real, what is sample", style = NexaType.Title)
+                Text(text = "What it does", style = NexaType.Title)
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    text = "Real: your installed apps and launching them, app search, wallpapers, " +
-                        "theme and time settings, the clock and network status.\n" +
-                        "Sample: the movies, shows, trending titles, artwork and \"continue watching\" " +
-                        "progress. NEXA TV cannot read what you are watching in other apps, so those " +
-                        "rows are placeholders until a real content source is configured.",
+                    text = "Harsh Reality shows the apps installed on this device and launches them. " +
+                        "Settings holds the wallpaper, accent colour, clock format and the shortcuts to " +
+                        "Android's own settings. It has no movies, shows or other content of its own.",
                     style = NexaType.Body,
                 )
             }

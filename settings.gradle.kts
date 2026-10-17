@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NexaTV"
+rootProject.name = "HarshReality"
 include(":app")

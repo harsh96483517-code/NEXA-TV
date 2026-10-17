@@ -1,12 +1,8 @@
 package com.nexatv.launcher.ui.screens
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,7 +33,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nexatv.launcher.app.AppContainer
 import com.nexatv.launcher.domain.model.AppEntry
-import com.nexatv.launcher.domain.model.ContentItem
 import com.nexatv.launcher.domain.model.UserSettings
 import com.nexatv.launcher.navigation.Destination
 import com.nexatv.launcher.navigation.NexaNavigator
@@ -45,7 +40,6 @@ import com.nexatv.launcher.platform.NetworkStatus
 import com.nexatv.launcher.ui.components.AppOptionsDialog
 import com.nexatv.launcher.ui.components.LocalMessageBus
 import com.nexatv.launcher.ui.components.QuickSettingsPanel
-import com.nexatv.launcher.ui.components.SampleNoticeDialog
 import com.nexatv.launcher.ui.components.SidebarDimens
 import com.nexatv.launcher.ui.components.SidebarItem
 import com.nexatv.launcher.ui.components.TVSidebar
@@ -69,7 +63,6 @@ class ShellCallbacks(
     /** Attached to the selected sidebar entry; "Left" from content jumps here. */
     val sidebarEntry: FocusRequester,
     val onAppOptions: (AppEntry) -> Unit,
-    val onPlay: (ContentItem) -> Unit,
     val onPickWallpaper: () -> Unit,
     val onSetDefaultHome: () -> Unit,
 )
@@ -122,7 +115,6 @@ private fun NexaShell(
     val sidebarEntry = remember { FocusRequester() }
     var sidebarFocused by remember { mutableStateOf(false) }
     var optionsApp by remember { mutableStateOf<AppEntry?>(null) }
-    var noticeItem by remember { mutableStateOf<ContentItem?>(null) }
     val reduce = LocalReduceEffects.current
 
     // The system Home button, pressed while we are already in front, means "go to the Home screen".
@@ -145,7 +137,6 @@ private fun NexaShell(
             navigator = navigator,
             sidebarEntry = sidebarEntry,
             onAppOptions = { optionsApp = it },
-            onPlay = { noticeItem = it },
             onPickWallpaper = onPickWallpaper,
             onSetDefaultHome = onRequestDefaultHome,
         )
@@ -164,13 +155,7 @@ private fun NexaShell(
         WallpaperBackground(settings.wallpaper)
 
         Column(Modifier.fillMaxSize()) {
-            TopNavBar(
-                currentRoot = navigator.currentRoot,
-                onNavigate = { navigator.openRoot(it) },
-                onOpenSettings = navigator::openQuickSettings,
-                network = network,
-                timeFormat = settings.timeFormat,
-            )
+            TopNavBar(network = network, timeFormat = settings.timeFormat)
             Box(Modifier.weight(1f).fillMaxSize()) {
                 // The layout always reserves the sidebar's *compact* width; when it expands it
                 // simply grows over the content, so screens never reflow while you navigate.
@@ -187,7 +172,6 @@ private fun NexaShell(
                             settings = settings,
                             settingsViewModel = settingsViewModel,
                             callbacks = callbacks,
-                            reduceEffects = reduce,
                         )
                     }
                 }
@@ -250,18 +234,6 @@ private fun NexaShell(
             onDismiss = { optionsApp = null },
         )
     }
-
-    val itemForNotice = noticeItem
-    if (itemForNotice != null) {
-        SampleNoticeDialog(
-            item = itemForNotice,
-            onOpenApps = {
-                noticeItem = null
-                navigator.openRoot(Destination.Apps)
-            },
-            onDismiss = { noticeItem = null },
-        )
-    }
 }
 
 @Composable
@@ -271,16 +243,7 @@ private fun ScreenHost(
     settings: UserSettings,
     settingsViewModel: SettingsViewModel,
     callbacks: ShellCallbacks,
-    reduceEffects: Boolean,
 ) {
-    AnimatedContent(
-        targetState = destination,
-        transitionSpec = {
-            val duration = if (reduceEffects) 0 else 220
-            fadeIn(tween(duration)) togetherWith fadeOut(tween(duration / 2))
-        },
-        label = "screen",
-    ) { target ->
-        Routes(target, factory, settings, settingsViewModel, callbacks)
-    }
+    // A plain switch: no cross-fade, so only one screen is ever composed at a time.
+    Routes(destination, factory, settings, settingsViewModel, callbacks)
 }

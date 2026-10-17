@@ -65,7 +65,7 @@ class AppIconLoader(private val context: Context) {
     }
 
     private companion object {
-        const val ICON_PX = 128
+        const val ICON_PX = 96
         const val SAMPLE_PX = 12
         const val FALLBACK_COLOR = 0xFF3A4A7A.toInt()
 

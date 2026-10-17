@@ -51,7 +51,7 @@ private val TileHeight = 108.dp
 /**
  * Wallpaper picker. Sources, all permitted for a normal app:
  *  - built-in procedural wallpapers,
- *  - images copied into NEXA TV's own storage folder (no permission, works without a file picker),
+ *  - images copied into Harsh Reality's own storage folder (no permission, works without a file picker),
  *  - any image chosen with Android's document picker, if the device has one.
  */
 @Composable
@@ -83,7 +83,7 @@ fun WallpaperScreen(
                     onClick = { onSelect(WallpaperChoice.BuiltIn(preset.id)) },
                     modifier = if (first) Modifier.focusRequester(initialFocus).then(leftToSidebar) else Modifier,
                 ) {
-                    ArtCanvas(preset.art, Modifier.fillMaxSize(), stars = false)
+                    ArtCanvas(preset.art, Modifier.fillMaxSize())
                 }
             }
             items(items = state.imported, key = { "file-${it.uri}" }) { file ->

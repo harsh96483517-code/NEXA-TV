@@ -26,7 +26,7 @@ import com.nexatv.launcher.ui.components.SectionHeader
 import com.nexatv.launcher.ui.theme.NexaPalette
 import com.nexatv.launcher.ui.theme.NexaType
 
-/** Every launchable app on the device. OK launches, Menu / long-press OK opens options. */
+/** Home: every launchable app on the device. OK launches, Menu / long-press OK opens options. */
 @Composable
 fun AppsScreen(
     apps: List<AppEntry>?,
@@ -40,7 +40,7 @@ fun AppsScreen(
         apps == null -> LoadingState(modifier, message = "Finding your apps…")
         apps.isEmpty() -> EmptyState(
             title = "No apps found",
-            message = "NEXA TV could not find any launchable apps on this device.",
+            message = "Harsh Reality could not find any launchable apps on this device.",
             modifier = modifier,
         )
         else -> {
@@ -49,7 +49,7 @@ fun AppsScreen(
             RequestFocusOnEnter(initialFocus)
 
             Column(modifier.fillMaxSize().padding(end = 8.dp)) {
-                SectionHeader(title = "All Apps", caption = "${apps.size} installed")
+                SectionHeader(title = "Apps", caption = "${apps.size} installed")
                 Text(
                     text = "Press OK to open · hold OK or press Menu for options",
                     style = NexaType.Caption.copy(color = NexaPalette.TextTertiary),

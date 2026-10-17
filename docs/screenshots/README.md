@@ -6,8 +6,8 @@ captured from a real build of the app. Please do not add mock-ups here.
 Capture genuine screenshots from an Android TV emulator or device:
 
 ```bash
-adb exec-out screencap -p > docs/screenshots/home.png
+adb exec-out screencap -p > docs/screenshots/apps.png
 ```
 
-Suggested set: `home.png`, `apps.png`, `search.png`, `quick-settings.png`, `wallpaper.png`,
-`about.png`. Then reference them from the main README, e.g. `![Home](docs/screenshots/home.png)`.
+Suggested set: `apps.png`, `settings.png`, `wallpaper.png`, `theme.png`, `about.png`. Then reference
+them from the main README, e.g. `![Apps](docs/screenshots/apps.png)`.

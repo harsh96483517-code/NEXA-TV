@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
     private fun requestDefaultHome() {
         val controller = container.defaultHomeController
         if (controller.isDefaultHome()) {
-            container.messages.post("NEXA TV is already your default Home app.")
+            container.messages.post("Harsh Reality is already your default Home app.")
             return
         }
         val roleIntent = controller.roleRequestIntent()
@@ -78,7 +78,7 @@ class MainActivity : ComponentActivity() {
             wallpaperPicker.launch(arrayOf("image/*"))
         } catch (e: ActivityNotFoundException) {
             container.messages.post(
-                "This TV has no file picker. Copy images into NEXA TV's wallpaper folder instead.",
+                "This TV has no file picker. Copy images into Harsh Reality's wallpaper folder instead.",
                 isError = true,
             )
         }

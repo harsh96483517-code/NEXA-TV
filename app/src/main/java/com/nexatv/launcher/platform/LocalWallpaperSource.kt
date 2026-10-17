@@ -5,7 +5,7 @@ import java.io.File
 import java.util.Locale
 
 /**
- * Wallpapers the user placed in NEXA TV's own app-specific storage folder
+ * Wallpapers the user placed in Harsh Reality's own app-specific storage folder
  * (`Android/data/<package>/files/wallpapers`). This needs no storage permission and works on TVs
  * that ship without a document picker: copy images there over USB, adb or a file manager.
  *

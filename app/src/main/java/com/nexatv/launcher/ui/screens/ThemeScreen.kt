@@ -88,7 +88,7 @@ fun ThemeScreen(
             )
             GlassToggleRow(
                 title = "Reduce effects",
-                subtitle = "No window blur, drifting wallpaper or auto-rotating banner. Best for older TVs",
+                subtitle = "Turns off focus glow and slide animations on tiles and the sidebar. Best for older TVs",
                 checked = settings.reduceEffects,
                 onCheckedChange = onReduceEffects,
                 modifier = leftToSidebar,

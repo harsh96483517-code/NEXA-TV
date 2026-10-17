@@ -42,7 +42,7 @@ fun NexaMark(modifier: Modifier = Modifier) {
     }
 }
 
-/** The NEXA TV wordmark: mark + letter-spaced name, matching the reference header. */
+/** The Harsh Reality wordmark: mark + letter-spaced name (two words, the second in the accent colour). */
 @Composable
 fun NexaLogo(modifier: Modifier = Modifier) {
     val accent = LocalNexaAccent.current
@@ -50,15 +50,15 @@ fun NexaLogo(modifier: Modifier = Modifier) {
         NexaMark()
         Spacer(Modifier.width(10.dp))
         Text(
-            text = "NEXA",
-            style = NexaType.Title.copy(fontSize = 18.sp, letterSpacing = 4.sp, fontWeight = FontWeight.Medium),
+            text = "HARSH",
+            style = NexaType.Title.copy(fontSize = 16.sp, letterSpacing = 2.5.sp, fontWeight = FontWeight.Medium),
         )
         Spacer(Modifier.width(8.dp))
         Text(
-            text = "TV",
+            text = "REALITY",
             style = NexaType.Title.copy(
-                fontSize = 18.sp,
-                letterSpacing = 4.sp,
+                fontSize = 16.sp,
+                letterSpacing = 2.5.sp,
                 fontWeight = FontWeight.Medium,
                 color = accent.start,
             ),

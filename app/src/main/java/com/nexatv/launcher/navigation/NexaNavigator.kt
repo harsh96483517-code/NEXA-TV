@@ -6,8 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
 /**
- * Minimal back stack. Root destinations (sidebar / top bar) always sit directly above Home so that
- * Back from any root screen returns to Home; detail screens push on top of whatever is below.
+ * Minimal back stack. Home (the Apps grid) is always at the bottom; the settings sub-screens push
+ * on top of it and Back pops them.
  */
 class NexaNavigator {
 

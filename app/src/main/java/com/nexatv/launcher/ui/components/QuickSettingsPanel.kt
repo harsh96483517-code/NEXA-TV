@@ -91,7 +91,7 @@ fun QuickSettingsPanel(
                     onClick = onSystemSettings,
                 )
                 GlassActionRow(
-                    title = "About NEXA TV",
+                    title = "About Harsh Reality",
                     subtitle = "Version and default Home app",
                     icon = R.drawable.ic_info,
                     onClick = onAbout,

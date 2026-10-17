@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -19,17 +18,17 @@ import kotlin.random.Random
 
 /**
  * Original, procedurally generated artwork (sky gradient, glowing sun/planet, layered terrain).
- * It stands in for poster and wallpaper images, so the project ships no third-party artwork and no
- * binary assets. Everything is computed once per size inside drawWithCache.
+ * It provides the built-in wallpapers, so the project ships no third-party artwork and no binary
+ * assets. Everything is computed once per size inside drawWithCache.
  */
 @Composable
-fun ArtCanvas(spec: ArtSpec, modifier: Modifier = Modifier, stars: Boolean = true) {
-    Box(modifier.artBackground(spec, stars))
+fun ArtCanvas(spec: ArtSpec, modifier: Modifier = Modifier) {
+    Box(modifier.artBackground(spec))
 }
 
 private class TerrainLayer(val path: Path, val color: Color)
 
-fun Modifier.artBackground(spec: ArtSpec, stars: Boolean = true): Modifier = drawWithCache {
+fun Modifier.artBackground(spec: ArtSpec): Modifier = drawWithCache {
     val w = size.width
     val h = size.height
     // Nothing to draw (and the terrain builders would never terminate on a zero-height canvas).
@@ -50,18 +49,6 @@ fun Modifier.artBackground(spec: ArtSpec, stars: Boolean = true): Modifier = dra
         radius = sunRadius * 2.6f,
     )
 
-    val starPoints = if (stars) {
-        List(if (w * h > 160_000f) 70 else 28) {
-            Triple(
-                Offset(rnd.nextFloat() * w, rnd.nextFloat() * h * 0.6f),
-                (0.5f + rnd.nextFloat() * 1.4f),
-                0.25f + rnd.nextFloat() * 0.6f,
-            )
-        }
-    } else {
-        emptyList()
-    }
-
     // A large planet limb for the PLANET motif, otherwise nothing.
     val planetCenter = Offset(w * 0.8f, -h * 0.05f)
     val planetRadius = h * 0.78f
@@ -80,9 +67,6 @@ fun Modifier.artBackground(spec: ArtSpec, stars: Boolean = true): Modifier = dra
 
     onDrawBehind {
         drawRect(sky, size = Size(w, h))
-        for ((point, radius, alpha) in starPoints) {
-            drawCircle(Color.White.copy(alpha = alpha), radius = radius, center = point)
-        }
         if (spec.motif == ArtMotif.PLANET) {
             drawCircle(planetBrush, radius = planetRadius, center = planetCenter)
             drawCircle(
@@ -119,14 +103,6 @@ private fun buildLayers(
             TerrainLayer(ridgePath(rnd, w, h, h * 0.62f, h * 0.14f, 16), lerp(accent, bottom, 0.82f)),
             TerrainLayer(ridgePath(rnd, w, h, h * 0.76f, h * 0.10f, 12), lerp(accent, bottom, 0.9f)),
             TerrainLayer(ridgePath(rnd, w, h, h * 0.9f, h * 0.05f, 10), shade(0.6f)),
-        )
-        ArtMotif.CITY -> listOf(
-            TerrainLayer(skylinePath(rnd, w, h, h * 0.84f, h * 0.38f), shade(0.42f)),
-            TerrainLayer(skylinePath(rnd, w, h, h * 0.95f, h * 0.34f), shade(0.70f)),
-        )
-        ArtMotif.FOREST -> listOf(
-            TerrainLayer(treesPath(rnd, w, h, h * 0.78f, h * 0.30f), shade(0.45f)),
-            TerrainLayer(treesPath(rnd, w, h, h * 0.92f, h * 0.34f), shade(0.72f)),
         )
         ArtMotif.DESERT -> listOf(
             TerrainLayer(dunePath(rnd, w, h, h * 0.70f, h * 0.10f), lerp(accent, bottom, 0.78f)),
@@ -169,33 +145,5 @@ private fun dunePath(rnd: Random, w: Float, h: Float, baseY: Float, amp: Float):
     }
     path.lineTo(w, h)
     path.close()
-    return path
-}
-
-private fun skylinePath(rnd: Random, w: Float, h: Float, baseY: Float, maxHeight: Float): Path {
-    val path = Path()
-    var x = 0f
-    while (x < w) {
-        val buildingWidth = w * (0.03f + rnd.nextFloat() * 0.05f)
-        val buildingHeight = maxHeight * (0.25f + rnd.nextFloat() * 0.75f)
-        path.addRect(Rect(x, baseY - buildingHeight, min(w, x + buildingWidth), h))
-        x += buildingWidth * (0.9f + rnd.nextFloat() * 0.3f)
-    }
-    return path
-}
-
-private fun treesPath(rnd: Random, w: Float, h: Float, baseY: Float, treeHeight: Float): Path {
-    val path = Path()
-    var x = -treeHeight * 0.2f
-    while (x < w) {
-        val th = treeHeight * (0.6f + rnd.nextFloat() * 0.6f)
-        val tw = th * 0.45f
-        path.moveTo(x, baseY)
-        path.lineTo(x + tw / 2f, baseY - th)
-        path.lineTo(x + tw, baseY)
-        path.close()
-        x += tw * 0.7f
-    }
-    path.addRect(Rect(0f, baseY - 1f, w, h))
     return path
 }

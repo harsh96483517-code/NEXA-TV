@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-/** All installed launchable apps (without NEXA TV itself). `null` = still loading. */
+/** All installed launchable apps (without Harsh Reality itself). `null` = still loading. */
 class AppsViewModel(private val container: AppContainer) : ViewModel() {
 
     val apps: StateFlow<List<AppEntry>?> = container.installedApps

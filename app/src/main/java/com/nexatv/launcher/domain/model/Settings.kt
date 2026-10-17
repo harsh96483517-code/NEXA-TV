@@ -80,8 +80,6 @@ data class UserSettings(
     val timeFormat: TimeFormat = TimeFormat.SYSTEM,
     /** When true the sidebar collapses to icons and expands only while it has focus. */
     val sidebarCompact: Boolean = false,
-    /** Disables window blur, auto-rotation, drifting backgrounds and long animations. */
-    val reduceEffects: Boolean = false,
-    /** Ids of content the user added to the Library. */
-    val libraryIds: Set<String> = emptySet(),
+    /** Turns off focus and screen animations. On by default so older TVs stay smooth. */
+    val reduceEffects: Boolean = true,
 )

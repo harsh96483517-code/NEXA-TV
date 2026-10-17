@@ -46,17 +46,17 @@
             </gradient>
         </aapt:attr>
     </path>
-    <!-- "NEXA" wordmark drawn as simple strokes so no font is needed. -->
+    <!-- "HARSH REALITY" wordmark drawn as simple strokes so no font is needed. -->
     <path
         android:fillColor="#00000000"
-        android:pathData="M120,56 L120,100 M120,56 L144,100 M144,56 L144,100 M156,56 L180,56 M156,56 L156,100 M156,100 L180,100 M156,78 L176,78 M190,56 L218,100 M218,56 L190,100 M228,100 L240,56 L252,100 M232,88 L248,88"
+        android:pathData="M118,38 L118,68 M138,38 L138,68 M118,53 L138,53 M145,68 L155,38 L165,68 M149,58 L161,58 M172,68 L172,38 L186,38 L192,43 L192,49 L186,54 L172,54 M184,54 L192,68 M219,42 L215,38 L203,38 L199,42 L199,49 L203,53 L215,53 L219,57 L219,64 L215,68 L203,68 L199,64 M226,38 L226,68 M246,38 L246,68 M226,53 L246,53 M118,116 L118,86 L132,86 L138,91 L138,97 L132,102 L118,102 M130,102 L138,116 M165,86 L145,86 L145,116 L165,116 M145,101 L160,101 M172,116 L182,86 L192,116 M176,106 L188,106 M199,86 L199,116 L219,116 M229,86 L243,86 M236,86 L236,116 M229,116 L243,116 M253,86 L273,86 M263,86 L263,116 M280,86 L290,101 L300,86 M290,101 L290,116"
         android:strokeColor="#FFF4F7FF"
-        android:strokeWidth="5"
+        android:strokeWidth="4"
         android:strokeLineCap="round"
         android:strokeLineJoin="round" />
     <path
         android:fillColor="#00000000"
-        android:pathData="M122,128 L250,128"
+        android:pathData="M120,136 L300,136"
         android:strokeColor="#9927D3FF"
         android:strokeWidth="2"
         android:strokeLineCap="round" />

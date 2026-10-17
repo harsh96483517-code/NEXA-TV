@@ -18,14 +18,18 @@ android {
 
     buildTypes {
         release {
-            // Unsigned by default. Signing keys must never be committed to the repo;
-            // supply your own via a local, git-ignored signing config if you need a release build.
+            // The fast build: R8 shrinks and optimises the code, and Compose runs without the
+            // debug-only overhead that makes the debug APK feel laggy on a TV box.
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
+            // Signed with the auto-generated local debug key so the APK installs straight away
+            // for sideloading. No key file is stored in this repo. For a Play Store release,
+            // replace this with your own git-ignored signing config.
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
@@ -52,6 +56,8 @@ android {
     lint {
         // The launcher is TV-first; keep lint useful but do not fail debug builds on warnings.
         abortOnError = false
+        // Keeps the release build quick; run ./gradlew lint when you want the full report.
+        checkReleaseBuilds = false
     }
 }
 

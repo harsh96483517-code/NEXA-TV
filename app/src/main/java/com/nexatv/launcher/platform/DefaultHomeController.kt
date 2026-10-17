@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 
 /**
- * Helps the user pick NEXA TV as their Home app through Android's supported flows. An app cannot
+ * Helps the user pick Harsh Reality as their Home app through Android's supported flows. An app cannot
  * make itself the default launcher: it can only ask, and the user decides.
  *
  * - API 29+: RoleManager's "Home" role request (a system dialog the user confirms).

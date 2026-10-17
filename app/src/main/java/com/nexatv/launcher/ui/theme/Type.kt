@@ -49,6 +49,5 @@ object NexaShapes {
     val Card = RoundedCornerShape(16.dp)
     val Tile = RoundedCornerShape(14.dp)
     val Panel = RoundedCornerShape(22.dp)
-    val Hero = RoundedCornerShape(22.dp)
     val Pill = RoundedCornerShape(50)
 }

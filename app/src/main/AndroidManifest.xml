@@ -30,7 +30,7 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent>
-        <!-- Lets us tell whether NEXA TV is currently the default Home app (API 26-28 fallback). -->
+        <!-- Lets us tell whether Harsh Reality is currently the default Home app (API 26-28 fallback). -->
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.HOME" />
@@ -57,7 +57,7 @@
             android:windowSoftInputMode="adjustResize"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize|uiMode|density|fontScale|layoutDirection|locale">
 
-            <!-- Shows NEXA TV in the app list of other launchers (TV and phone/tablet). -->
+            <!-- Shows Harsh Reality in the app list of other launchers (TV and phone/tablet). -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -65,7 +65,7 @@
             </intent-filter>
 
             <!--
-                Launcher eligibility. This makes NEXA TV selectable as a Home app. The user still has
+                Launcher eligibility. This makes Harsh Reality selectable as a Home app. The user still has
                 to choose it through Android's own flow; an app cannot force itself to be the default.
             -->
             <intent-filter>

@@ -27,7 +27,7 @@ data class WallpaperUiState(
 )
 
 /**
- * Wallpaper options: the built-in procedural presets, images the user dropped into NEXA TV's own
+ * Wallpaper options: the built-in procedural presets, images the user dropped into Harsh Reality's own
  * storage folder, and (through the activity's document picker) any image the user chooses.
  */
 class WallpaperViewModel(private val container: AppContainer) : ViewModel() {
