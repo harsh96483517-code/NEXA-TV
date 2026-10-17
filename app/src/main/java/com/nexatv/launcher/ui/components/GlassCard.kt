@@ -97,7 +97,7 @@ fun GlassCard(
                         onSecondaryAction()
                         true
                     }
-                    isOk && event.type == KeyEventType.KeyDown && event.repeatCount == 1 -> {
+                    isOk && event.type == KeyEventType.KeyDown && event.nativeKeyEvent.repeatCount == 1 -> {
                         tracker.fired = true
                         onSecondaryAction()
                         true
